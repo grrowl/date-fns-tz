@@ -66,7 +66,13 @@ export default function tzParseTimezone(timezoneString, date) {
       tokens[5]
     )
     var timestampWithMsZeroed = date.getTime() - (date.getTime() % 1000)
-    return -(asUTC - timestampWithMsZeroed)
+    var dst =
+      hasDST(new Date(asUTC)) && !hasDST(new Date(timestampWithMsZeroed))
+        ? MILLISECONDS_IN_HOUR
+        : !hasDST(new Date(asUTC)) && hasDST(new Date(timestampWithMsZeroed))
+        ? -MILLISECONDS_IN_HOUR
+        : 0
+    return -(asUTC - timestampWithMsZeroed - dst)
   }
 
   return 0
@@ -78,4 +84,14 @@ function validateTimezone(hours, minutes) {
   }
 
   return true
+}
+
+function hasDST(date) {
+  var jan = new Date(date.getFullYear(), 0, 1)
+  var jul = new Date(date.getFullYear(), 6, 1)
+
+  return (
+    date.getTimezoneOffset() <
+    Math.max(jan.getTimezoneOffset(), jul.getTimezoneOffset())
+  )
 }
