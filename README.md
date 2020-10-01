@@ -1,3 +1,14 @@
+## this fork (`grrowl/date-fns-tz`)
+
+[![Build Status](https://travis-ci.org/grrowl/date-fns-tz.svg?branch=master)](https://travis-ci.org/grrowl/date-fns-tz)
+
+Since the original maintainer doesn't have bandwidth to review and merge PRs on [the original repo](https://github.com/marnusw/date-fns-tz), this fork includes the pull requests:
+
+* [https://github.com/marnusw/date-fns-tz/pull/46 #46](https://github.com/marnusw/date-fns-tz/pull/46)
+* [Correctly consider local time zone #51](https://github.com/marnusw/date-fns-tz/pull/51)
+
+This package is published on npm as `@mr-yum/date-fns-tz`. I will accept pull requests here if they **are clear in intention** and **include tests**.
+
 # date-fns-tz
 
 Time zone support for [date-fns](https://date-fns.org/) v2.0.0 using the
