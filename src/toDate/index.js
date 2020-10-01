@@ -156,7 +156,7 @@ export default function toDate(argument, dirtyOptions) {
     if (dateStrings.timezone || options.timeZone) {
       offset = tzParseTimezone(
         dateStrings.timezone || options.timeZone,
-        date
+        new Date(year + restDateString + ' ' + dateStrings.time) // local time to calculate dst
       )
       if (isNaN(offset)) {
         return new Date(NaN)
@@ -238,6 +238,7 @@ function parseYear(dateString, additionalDigits) {
   }
 }
 
+// returns the parsed date in UTC
 function parseDate(dateString, year) {
   // Invalid ISO-formatted year
   if (year === null) {
