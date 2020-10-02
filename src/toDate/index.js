@@ -154,10 +154,7 @@ export default function toDate(argument, dirtyOptions) {
     }
 
     if (dateStrings.timezone || options.timeZone) {
-      offset = tzParseTimezone(
-        dateStrings.timezone || options.timeZone,
-        new Date(year + restDateString + ' ' + dateStrings.time) // local time to calculate dst
-      )
+      offset = tzParseTimezone(dateStrings.timezone || options.timeZone, date)
       if (isNaN(offset)) {
         return new Date(NaN)
       }
